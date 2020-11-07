@@ -5,10 +5,10 @@ VCCDATA$voice_hh_food<- factor(VCCDATA$voice_hh_food, levels = c("more_than", "e
 VCCDATA$ voice_hh_spending <- factor(VCCDATA$voice_hh_spending, levels = c("more_than", "equal", "moderate", "little", "none"))
 VCCDATA$ voice_hh_crops <- factor(VCCDATA$voice_hh_crops, levels = c("more_than", "equal", "moderate", "little", "none"))
 VCCDATA$ voice_hh_confidence <- factor(VCCDATA$voice_hh_confidence, levels = c("more_than", "equal", "moderate", "little", "none"))
-VCCDATA$ voice_hh_suggestions <- factor(VCCDATA$voice_hh_suggestions, levels = c("more_than", "equal", "moderate", "little", "none"))
+VCCDATA$ voice_hh_suggestions <- factor(VCCDATA$voice_hh_suggestions, levels = c("yes", "sometimes", "no"))
 VCCDATA$ voice_comm_speaking <- factor(VCCDATA$voice_comm_speaking, levels = c("more_than", "equal", "moderate", "little", "none"))
 VCCDATA$ voice_comm_meetings <- factor(VCCDATA$voice_comm_meetings, levels = c("more_than", "equal", "moderate", "little", "none"))
- VCCDATA$ voice_comm_activities <- factor(VCCDATA$voice_comm_activities, levels = c("more_than", "equal", "moderate", "little", "none"))
+VCCDATA$ voice_comm_activities <- factor(VCCDATA$voice_comm_activities, levels = c("more_than", "equal", "moderate", "little", "none"))
 VCCDATA$ choice_hh_training <- factor(VCCDATA$choice_hh_training, levels = c("more_than", "equal", "moderate", "little", "none"))
 VCCDATA$ choice_hh_decisions <- factor(VCCDATA$choice_hh_decisions, levels = c("more_than", "equal", "moderate", "little", "none"))
 VCCDATA$ choice_hh_allocation <- factor(VCCDATA$choice_hh_allocation, levels = c("more_than", "equal", "moderate", "little", "none"))
@@ -36,6 +36,7 @@ VCCDATA$Participation<-factor(VCCDATA$Participation,levels=c("JNM+VTE", "JNM", "
 VCCDATA<-subset(VCCDATA, Gender=="M" & Respondent!="Female_adult" | Gender=="F" & Respondent!="Male_adult")
 VCCM<-subset(VCCDATA, Gender!="F")
 VCCF<-subset(VCCDATA, Gender!="M")
+View(VCCDATA)
 VCC2019<-VCCDATA[!(VCCDATA$Year=="2020"),]
 VCC2020<-VCCDATA[!(VCCDATA$Year=="2019"),]
 VCCF2019<-VCCF[!(VCCF$Year=="2020"),]
