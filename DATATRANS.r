@@ -20,6 +20,8 @@ for (topic in columnValues) {
     topic<- factor(topic, levels = c("more_than", "equal", "moderate", "little", "none"))
 }
 
+VCCDATA$ voice_hh_suggestions <- factor(VCCDATA$voice_hh_suggestions, levels = c("yes", "sometimes", "no"))
+
 VCCDATA$Respondent<- factor(VCCDATA$Respondent, levels = c("Young_woman", "Female_adult", "Young_man", "Male_adult"))
 VCCDATA$"VTE member"[is.na(VCCDATA$"VTE member")] <- "N"
 VCCDATA$"Jardins Nutritifs Member"[is.na(VCCDATA$"Jardins Nutritifs Member")] <- "N"
