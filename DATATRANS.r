@@ -6,32 +6,20 @@
 
 # ********************************************************************************************************************************************
 
-VCCDataFull <- read_excel("aaTreeAid/VCCDataFull.xlsx")
+VCCDataFull <- read_excel("TreeAid/VCCDataFull.xlsx")
 View(VCCDataFull)
 VCCDATA<-VCCDataFull
-VCCDATA$topic<- factor(VCCDATA$topic, levels = c("more_than", "equal", "moderate", "little", "none"))
-VCCDATA$ voice_hh_spending <- factor(VCCDATA$voice_hh_spending, levels = c("more_than", "equal", "moderate", "little", "none"))
-VCCDATA$ voice_hh_crops <- factor(VCCDATA$voice_hh_crops, levels = c("more_than", "equal", "moderate", "little", "none"))
-VCCDATA$ voice_hh_confidence <- factor(VCCDATA$voice_hh_confidence, levels = c("more_than", "equal", "moderate", "little", "none"))
-VCCDATA$ voice_hh_suggestions <- factor(VCCDATA$voice_hh_suggestions, levels = c("yes", "sometimes", "no"))
-VCCDATA$ voice_comm_speaking <- factor(VCCDATA$voice_comm_speaking, levels = c("more_than", "equal", "moderate", "little", "none"))
-VCCDATA$ voice_comm_meetings <- factor(VCCDATA$voice_comm_meetings, levels = c("more_than", "equal", "moderate", "little", "none"))
-VCCDATA$ voice_comm_activities <- factor(VCCDATA$voice_comm_activities, levels = c("more_than", "equal", "moderate", "little", "none"))
-VCCDATA$ choice_hh_training <- factor(VCCDATA$choice_hh_training, levels = c("more_than", "equal", "moderate", "little", "none"))
-VCCDATA$ choice_hh_decisions <- factor(VCCDATA$choice_hh_decisions, levels = c("more_than", "equal", "moderate", "little", "none"))
-VCCDATA$ choice_hh_allocation <- factor(VCCDATA$choice_hh_allocation, levels = c("more_than", "equal", "moderate", "little", "none"))
-VCCDATA$ choice_hh_income_women <- factor(VCCDATA$choice_hh_income_women, levels = c("more_than", "equal", "moderate", "little", "none"))
-VCCDATA$ choice_comm_market <- factor(VCCDATA$choice_comm_market, levels = c("more_than", "equal", "moderate", "little", "none"))
-VCCDATA$ choice_comm_committee <- factor(VCCDATA$choice_comm_committee, levels = c("more_than", "equal", "moderate", "little", "none"))
-VCCDATA$ control_hh_farm_land <- factor(VCCDATA$control_hh_farm_land, levels = c("more_than", "equal", "moderate", "little", "none"))
-VCCDATA$ control_hh_comm_land <- factor(VCCDATA$control_hh_comm_land, levels = c("more_than", "equal", "moderate", "little", "none"))
-VCCDATA$ control_hh_assets <- factor(VCCDATA$control_hh_assets, levels = c("more_than", "equal", "moderate", "little", "none"))
-VCCDATA$ control_hh_livestock <- factor(VCCDATA$control_hh_livestock, levels = c("more_than", "equal", "moderate", "little", "none"))
-VCCDATA$ control_hh_trees <- factor(VCCDATA$control_hh_trees, levels = c("more_than", "equal", "moderate", "little", "none"))
-VCCDATA$ control_hh_savings <- factor(VCCDATA$control_hh_savings, levels = c("more_than", "equal", "moderate", "little", "none"))
-VCCDATA$ control_comm_resources <- factor(VCCDATA$control_comm_resources, levels = c("more_than", "equal", "moderate", "little", "none"))
-VCCDATA$ control_comm_leadership <- factor(VCCDATA$control_comm_leadership, levels = c("more_than", "equal", "moderate", "little", "none"))
-VCCDATA$ control_comm_by_laws <- factor(VCCDATA$control_comm_by_laws, levels = c("more_than", "equal", "moderate", "little", "none"))
+
+columnValues<- c(voice_hh_food, voice_hh_spending, voice_hh_crops, voice_hh_confidence, voice_hh_suggestions, 
+voice_comm_speaking, voice_public_suggestions, voice_comm_meetings, voice_comm_activities, choice_hh_training,
+choice_hh_decisions, choice_hh_allocation, choice_hh_income_women, choice_comm_market, choice_comm_committee, 
+control_hh_farm_land, control_hh_comm_land, control_hh_assets, control_hh_livestock, control_hh_trees, 
+control_hh_savings, control_comm_resources, control_comm_leadership, control_comm_by_laws)
+
+for (topic in columnValues) {
+    VCCDATA$ voice_hh_food<- factor(VCCDATA$topic, levels = c("more_than", "equal", "moderate", "little", "none"))
+}
+
 VCCDATA$Respondent<- factor(VCCDATA$Respondent, levels = c("Young_woman", "Female_adult", "Young_man", "Male_adult"))
 VCCDATA$"VTE member"[is.na(VCCDATA$"VTE member")] <- "N"
 VCCDATA$"Jardins Nutritifs Member"[is.na(VCCDATA$"Jardins Nutritifs Member")] <- "N"
@@ -86,11 +74,12 @@ VCCM2020<-VCCM[!(VCCM$Year=="2019"),]
 
 # ***********************************************************************************************************************************************************************
 
-columnValues<- c('voice_hh_food', 'voice_hh_spending', 'voice_hh_crops', 'voice_hh_confidence', 'voice_hh_suggestions', 
-'voice_comm_speaking', 'voice_public_suggestions', 'voice_comm_meetings', 'voice_comm_activities', 'choice_hh_training',
-'choice_hh_decisions', 'choice_hh_allocation', 'choice_hh_income_women', 'choice_comm_market', 'choice_comm_committee', 
-'control_hh_farm_land', 'control_hh_comm_land', 'control_hh_assets', 'control_hh_livestock', 'control_hh_trees', 
-'control_hh_savings', 'control_comm_resources', 'control_comm_leadership', 'control_comm_by_laws')
+# columnValues<- c('voice_hh_food', 'voice_hh_spending', 'voice_hh_crops', 'voice_hh_confidence', 'voice_hh_suggestions', 
+# 'voice_comm_speaking', 'voice_public_suggestions', 'voice_comm_meetings', 'voice_comm_activities', 'choice_hh_training',
+# 'choice_hh_decisions', 'choice_hh_allocation', 'choice_hh_income_women', 'choice_comm_market', 'choice_comm_committee', 
+# 'control_hh_farm_land', 'control_hh_comm_land', 'control_hh_assets', 'control_hh_livestock', 'control_hh_trees', 
+# 'control_hh_savings', 'control_comm_resources', 'control_comm_leadership', 'control_comm_by_laws')
+
 
 for (topic in columnValues) {
 
