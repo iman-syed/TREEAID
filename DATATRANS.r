@@ -86,11 +86,11 @@ VCCM2020<-VCCM[!(VCCM$Year=="2019"),]
 
 # ***********************************************************************************************************************************************************************
 
-columnValues<- c(voice_hh_food, voice_hh_spending, voice_hh_crops, voice_hh_confidence, voice_hh_suggestions, 
-voice_comm_speaking, voice_public_suggestions, voice_comm_meetings, voice_comm_activities, choice_hh_training,
-choice_hh_decisions, choice_hh_allocation, choice_hh_income_women, choice_comm_market, choice_comm_committee, 
-control_hh_farm_land, control_hh_comm_land, control_hh_assets, control_hh_livestock, control_hh_trees, control_hh_savings,
-control_comm_resources, control_comm_leadership, control_comm_by_laws)
+columnValues<- c('voice_hh_food', 'voice_hh_spending', 'voice_hh_crops', 'voice_hh_confidence', 'voice_hh_suggestions', 
+'voice_comm_speaking', 'voice_public_suggestions', 'voice_comm_meetings', 'voice_comm_activities', 'choice_hh_training',
+'choice_hh_decisions', 'choice_hh_allocation', 'choice_hh_income_women', 'choice_comm_market', 'choice_comm_committee', 
+'control_hh_farm_land', 'control_hh_comm_land', 'control_hh_assets', 'control_hh_livestock', 'control_hh_trees', 
+'control_hh_savings', 'control_comm_resources', 'control_comm_leadership', 'control_comm_by_laws')
 
 for (topic in columnValues) {
 
