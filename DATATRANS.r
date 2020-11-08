@@ -1,4 +1,4 @@
-
+library(readxl)
 # ********************************************************************************************************************************************
 
 # Below is a lengthy command which cleans and transforms the data in preparation for analysis.
@@ -6,18 +6,18 @@
 
 # ********************************************************************************************************************************************
 
-VCCDataFull <- read_excel("TreeAid/VCCDataFull.xlsx")
+VCCDataFull <- read_excel("Documents/GitHub/TREEAID/VCCDataFull.xlsx")
 View(VCCDataFull)
 VCCDATA<-VCCDataFull
 
-columnValues<- c(voice_hh_food, voice_hh_spending, voice_hh_crops, voice_hh_confidence, voice_hh_suggestions, 
-voice_comm_speaking, voice_public_suggestions, voice_comm_meetings, voice_comm_activities, choice_hh_training,
-choice_hh_decisions, choice_hh_allocation, choice_hh_income_women, choice_comm_market, choice_comm_committee, 
-control_hh_farm_land, control_hh_comm_land, control_hh_assets, control_hh_livestock, control_hh_trees, 
-control_hh_savings, control_comm_resources, control_comm_leadership, control_comm_by_laws)
+columnValues<- c(VCCDATA$voice_hh_food, VCCDATA$voice_hh_spending, VCCDATA$voice_hh_crops, VCCDATA$voice_hh_confidence, VCCDATA$voice_hh_suggestions, 
+                 VCCDATA$voice_comm_speaking, VCCDATA$voice_public_suggestions, VCCDATA$voice_comm_meetings, VCCDATA$voice_comm_activities, VCCDATA$choice_hh_training,
+                 VCCDATA$choice_hh_decisions, VCCDATA$choice_hh_allocation, VCCDATA$choice_hh_income_women, VCCDATA$choice_comm_market, VCCDATA$choice_comm_committee, 
+                 VCCDATA$control_hh_farm_land, VCCDATA$control_hh_comm_land, VCCDATA$control_hh_assets, VCCDATA$control_hh_livestock, VCCDATA$control_hh_trees, VCCDATA$control_hh_savings,
+                 VCCDATA$control_comm_resources, VCCDATA$control_comm_leadership, VCCDATA$control_comm_by_laws)
 
 for (topic in columnValues) {
-    VCCDATA$ voice_hh_food<- factor(VCCDATA$topic, levels = c("more_than", "equal", "moderate", "little", "none"))
+    topic<- factor(topic, levels = c("more_than", "equal", "moderate", "little", "none"))
 }
 
 VCCDATA$Respondent<- factor(VCCDATA$Respondent, levels = c("Young_woman", "Female_adult", "Young_man", "Male_adult"))
@@ -80,19 +80,18 @@ VCCM2020<-VCCM[!(VCCM$Year=="2019"),]
 # 'control_hh_farm_land', 'control_hh_comm_land', 'control_hh_assets', 'control_hh_livestock', 'control_hh_trees', 
 # 'control_hh_savings', 'control_comm_resources', 'control_comm_leadership', 'control_comm_by_laws')
 
-
 for (topic in columnValues) {
 
-    T1Q1<-table(VCCDATA$Year, VCCDATA$topic) 
+    T1Q1<-table(VCCDATA$Year, topic) 
     T1Q1<-addmargins(T1Q1)
-    T1Q1PER<-prop.table(table(VCCDATA$Year, VCCDATA$topic), margin=1)*100
+    T1Q1PER<-prop.table(table(VCCDATA$Year, topic), margin=1)*100
     T1Q1 %>%
     kbl(caption = "Q1 Voice HH Food Production, Female (Count)") %>%
     kable_classic(full_width = F, html_font = "Cambria")
     T1Q1PER %>%
     kbl(caption = "Q1 Voice HH Food Production, Female (%)") %>%
     kable_classic(full_width = F, html_font = "Cambria")
-    T1Q1PER2<-prop.table(table(VCCDATA$topic))*100 
+    T1Q1PER2<-prop.table(table(topic))*100 
     T1Q1PER2 %>%
     kbl(caption = "Q1 Voice HH Food Production, Overall (%)") %>%
     kable_classic(full_width = F, html_font = "Cambria")
@@ -103,15 +102,15 @@ for (topic in columnValues) {
 
     # ***********************************************************************************************************************************************************************
 
-    T1Q1<-table(VCCDATA$Gender, VCCDATA$topic)
+    T1Q1<-table(VCCDATA$Gender, topic)
     T1Q1%>%
     kbl(caption = "Q1 Voice HH Food Production, Gender (Count)") %>%
     kable_classic(full_width = F, html_font = "Cambria")
-    T1Q1PER<-prop.table(table(VCCDATA$Gender, VCCDATA$topic), margin=1)*100
+    T1Q1PER<-prop.table(table(VCCDATA$Gender, topic), margin=1)*100
     T1Q1PER %>%
     kbl(caption = "Q1 Voice HH Food Production, Gender (%)") %>%
     kable_classic(full_width = F, html_font = "Cambria")
-    T2Q1PER<-prop.table(table(VCCDATA$Year, VCCDATA$Gender, VCCDATA$topic), margin=1)*100
+    T2Q1PER<-prop.table(table(VCCDATA$Year, VCCDATA$Gender, topic), margin=1)*100
     T2Q1PER %>%
     kbl(caption = "Q1 Voice HH Food Production, Gender + Year (%)") %>%
     kable_classic(full_width = F, html_font = "Cambria")
@@ -178,7 +177,7 @@ for (topic in columnValues) {
     geom_text(stat="count",aes(label=..count..),vjust=-.5, size=3)+ggtitle("Q1 Voice HH Food Production, Year (Count)") +labs(y="Count",fill="Response")+facet_grid(~Year) + scale_fill_discrete(name = "Response", 
     labels = c("More Than", "Equal", "Moderate", "Little", "None"))
     P1Q1
-
+summ
 
     # *P1Q1a - COUNT 2019 AND 2020 COMPARED, SIDE BY SIDE*
 
